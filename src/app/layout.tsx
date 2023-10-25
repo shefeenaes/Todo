@@ -16,15 +16,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <Navbar></Navbar>{children}
-        <footer className="footer footer-center p-4 bg-base-300 text-base-content">
-  <aside>
-    <p>Copyright © 2023 - All right reserved by Shefeena E S</p>
-  </aside>
-</footer>
-        </body>
-
+      <body className="flex flex-col h-screen" >
+        <Navbar></Navbar>
+        <div className="flex-1 container pt-12 bg-white">{children}</div>
+        <footer className="footer footer-center p-4 text-base-content">
+          <aside>
+            <p>Copyright © 2023 - All rights reserved by Shefeena E S</p>
+          </aside>
+        </footer>
+      </body>
     </html>
   )
 }

@@ -1,0 +1,28 @@
+"use client"
+import { FormInputTask } from '@/types'
+import React from 'react'
+import { FC } from 'react'
+import { useForm , SubmitHandler } from 'react-hook-form'
+interface FormInput
+{
+  submit:SubmitHandler<FormInputTask>;
+  isEditing: boolean;
+}
+const FormPost: FC<FormInput> = ({submit, isEditing}) => {
+    const {register,handleSubmit} = useForm<FormInputTask>()
+
+  return (
+    <form onSubmit={handleSubmit(submit)} className='flex flex-col items-center justify-center gap-5 mt-10'>
+        <textarea className="textarea textarea-primary textarea-lg w-full max-w-lg" {...register("task", { required: true })} placeholder="Type your new task..."></textarea>
+        <select className="select select-primary  select-lg w-full max-w-lg "  {...register("status",{ required: true })}  defaultValue=''>
+            <option disabled value=''>Select status</option>
+            <option>Not started</option>
+            <option>Done</option>
+            <option>In progress</option>
+        </select>
+        <button type="submit" className='btn btn-primary w-full max-w-lg'>{isEditing ?'Update':'Create'}</button>
+    </form>
+  )
+}
+
+export default FormPost
