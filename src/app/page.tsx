@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import Pagination from '@/components/Pagination';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 interface TableDataItem {
   sno: number;
   task: string;
@@ -15,36 +16,34 @@ const Home: React.FC = () => {
 
   // Sample table data
   const tableData: TableDataItem[] = [
-    { sno: 1, task: 'Go to bed early', status: 'Not started' },
-    { sno: 2, task: 'Eat breakfast on time', status: 'Done' },
-    { sno: 3, task: 'Clean room', status: 'In progress' },
-    { sno: 1, task: 'Go to bed early', status: 'Not started' },
-    { sno: 2, task: 'Eat breakfast on time', status: 'Done' },
-    { sno: 3, task: 'Clean room', status: 'In progress' },
-    { sno: 1, task: 'Go to bed early', status: 'Not started' },
-    { sno: 2, task: 'Eat breakfast on time', status: 'Done' },
-    { sno: 3, task: 'Clean room', status: 'In progress' },
-    { sno: 1, task: 'Go to bed early', status: 'Not started' },
-    { sno: 2, task: 'Eat breakfast on time', status: 'Done' },
-    { sno: 3, task: 'Clean room', status: 'In progress' },
-    { sno: 1, task: 'Go to bed early', status: 'Not started' },
-    { sno: 2, task: 'Eat breakfast on time', status: 'Done' },
-    { sno: 3, task: 'Clean room', status: 'In progress' },
-    { sno: 1, task: 'Go to bed early', status: 'Not started' },
-    { sno: 2, task: 'Eat breakfast on time', status: 'Done' },
-    { sno: 3, task: 'Clean room', status: 'In progress' },
-    { sno: 1, task: 'Go to bed early', status: 'Not started' },
-    { sno: 2, task: 'Eat breakfast on time', status: 'Done' },
-    { sno: 3, task: 'Clean room', status: 'In progress' },
-    { sno: 1, task: 'Go to bed early', status: 'Not started' },
-    { sno: 2, task: 'Eat breakfast on time', status: 'Done' },
-    { sno: 3, task: 'Clean room', status: 'In progress' },
-    { sno: 1, task: 'Go to bed early', status: 'Not started' },
-    { sno: 2, task: 'Eat breakfast on time', status: 'Done' },
-    { sno: 3, task: 'Clean room', status: 'In progress' },
 
-    // Add more sample data here...
-    // You can insert 50 items or modify this data as needed.
+    { sno: 1, task: 'Go to bed early', status: 'Not started' },
+    { sno: 2, task: 'Eat breakfast on time', status: 'Done' },
+    { sno: 3, task: 'Clean room', status: 'In progress' },
+    { sno: 1, task: 'Go to bed early', status: 'Not started' },
+    { sno: 2, task: 'Eat breakfast on time', status: 'Done'},
+    { sno: 3, task: 'Clean room', status: 'In progress'},
+    { sno: 1, task: 'Go to bed early', status: 'Not started' },
+    { sno: 2, task: 'Eat breakfast on time', status: 'Done' },
+    { sno: 3, task: 'Clean room', status: 'In progress' },
+    { sno: 1, task: 'Go to bed early', status: 'Not started' },
+    { sno: 2, task: 'Eat breakfast on time', status: 'Done'},
+    { sno: 3, task: 'Clean room', status: 'In progress' },
+    { sno: 1, task: 'Go to bed early', status: 'Not started' },
+    { sno: 2, task: 'Eat breakfast on time', status: 'Done' },
+    { sno: 3, task: 'Clean room', status: 'In progress' },
+    { sno: 1, task: 'Go to bed early', status: 'Not started' },
+    { sno: 2, task: 'Eat breakfast on time', status: 'Done'},
+    { sno: 3, task: 'Clean room', status: 'In progress'},
+    { sno: 1, task: 'Go to bed early', status: 'Not started' },
+    { sno: 2, task: 'Eat breakfast on time', status: 'Done' },
+    { sno: 3, task: 'Clean room', status: 'In progress' },
+    { sno: 1, task: 'Go to bed early', status: 'Not started'},
+    { sno: 2, task: 'Eat breakfast on time', status: 'Done' },
+    { sno: 3, task: 'Clean room', status: 'In progress' },
+    { sno: 1, task: 'Go to bed early', status: 'Not started' },
+    { sno: 2, task: 'Eat breakfast on time', status: 'Done' },
+    { sno: 3, task: 'Clean room', status: 'In progress' },
   ];
 
   const totalPages: number = Math.ceil(tableData.length / itemsPerPage);
@@ -70,10 +69,24 @@ const Home: React.FC = () => {
     // Implement your delete logic here
     console.log(`Delete button clicked for item ${sno}`);
   };
+  console.log('getCurrentPageData.length-->'+getCurrentPageData().length)
   return (
     <main className="mt-10">
-      <div className="overflow-x-auto">
-        <table className="table">
+    <div className="overflow-x-auto">
+    {getCurrentPageData().length === 0 ? (
+<div className="flex justify-center items-center">
+  <div className="card w-96 bg-neutral text-neutral-content">
+    <div className="card-body items-center text-center">
+      <h2 className="card-title">No Tasks created yet</h2>
+      <p>Start adding tasks to your todo list</p>
+      <div className="card-actions justify-end">
+      <Link className='btn btn-primary' href='/create'>Add New Task</Link>
+      </div>
+    </div>
+  </div>
+</div>
+) : (
+<table className="table">
           {/* Table content */}
           <thead>
             <tr>
@@ -84,7 +97,8 @@ const Home: React.FC = () => {
             </tr>
           </thead>
           <tbody>
-            {getCurrentPageData().map((item: TableDataItem, index: number) => (
+
+              {getCurrentPageData().map((item: TableDataItem, index: number) => (
               <tr key={index} className="hover">
                 <th>{item.sno}</th>
                 <td>{item.task}</td>
@@ -116,18 +130,24 @@ const Home: React.FC = () => {
                   </button>
                 </td>
               </tr>
-            ))}
+            )
+            )
+          }
           </tbody>
         </table>
-      </div>
+)}
 
-      {/* Render the Pagination component */}
-      <Pagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onPageChange={handlePageChange}
-      />
-    </main>
+
+
+    </div>
+
+    {/* Render the Pagination component */}
+    <Pagination
+      currentPage={currentPage}
+      totalPages={totalPages}
+      onPageChange={handlePageChange}
+    />
+  </main>
   );
 };
 
