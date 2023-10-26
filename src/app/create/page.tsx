@@ -1,13 +1,31 @@
 "use client"
-import React from 'react'
+import React, { useMemo } from 'react'
 import FormPost from '@/components/FormPost'
 import { SubmitHandler } from 'react-hook-form'
 import { FormInputTask } from '@/types'
 import BackButton from '@/components/BackButton'
+import { useMutation } from '@tanstack/react-query'
+import axios from 'axios'
+import { useRouter } from 'next/navigation'
+
 const Create = () => {
+  const router = useRouter();
   const handleCreateTask: SubmitHandler<FormInputTask> =(data)=>{
-    console.log(data)
+    createTask(data)
   }
+  const {mutate: createTask ,status} = useMutation({
+    mutationFn:(newTask: FormInputTask)=>{
+      return axios.post('/api/tasks', newTask)
+    },
+    onError: (error)=>{
+      console.error(error)
+    },
+    onSuccess:()=>{
+      router.push('/')
+      router.refresh();
+    }
+
+  })
   return (
     <div>
       <BackButton/>

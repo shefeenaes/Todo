@@ -4,7 +4,31 @@ import FormPost from '@/components/FormPost'
 import { SubmitHandler } from 'react-hook-form'
 import { FormInputTask } from '@/types'
 import BackButton from '@/components/BackButton'
-const page = () => {
+import { FC } from 'react'
+import { db } from '@/lib/db'
+interface TaskDetailProps {
+  params:{
+    id:string;
+  }
+}
+async function getTask(id: string)
+{
+  const response = await db.task.findFirst({
+    where:{
+      id:id
+    },
+    select:{
+      id:true,
+      task:true,
+      status:true
+    }
+  });
+  return response;
+}
+const TaskEdit: FC<TaskDetailProps> =  ({params}) => {
+  const task =  getTask(params.id);
+  
+
     const handleEditTask: SubmitHandler<FormInputTask> =(data)=>{
         console.log(data)
       }
@@ -17,4 +41,4 @@ const page = () => {
   )
 }
 
-export default page
+export default TaskEdit
