@@ -1,6 +1,6 @@
 import { db } from "@/lib/db";
 import { NextResponse } from "next/server";
-console.log('reached here-1')
+
 export async function GET()
 {
     try
@@ -18,9 +18,8 @@ export async function POST(req:Request)
 {
     try
     {
-        console.log('reached here-4')
+  
         const body = await req.json()
-        console.log('body -->',body)
         const tasks = await db.task.create({data:{
             task:body.task,
             status:body.status

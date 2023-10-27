@@ -3,7 +3,10 @@ import React, { useState } from 'react';
 import Pagination from '@/components/Pagination';
 import { FC } from 'react';
 import Link from 'next/link';
+import { QueryClient, QueryClientProvider } from 'react-query';
 
+const queryClient = new QueryClient();
+import DeleteButton from './DeleteButton';
 interface TableDataProps {
   tasks: {
     id: string;
@@ -12,7 +15,9 @@ interface TableDataProps {
   }[];
 }
 
+
 const TableTasks: FC<TableDataProps> = ({ tasks }) => {
+
   const itemsPerPage = 8; // Number of items per page
   const [currentPage, setCurrentPage] = useState<number>(1);
   const totalPages: number = Math.ceil(tasks.length / itemsPerPage);
@@ -28,12 +33,7 @@ const TableTasks: FC<TableDataProps> = ({ tasks }) => {
     setCurrentPage(page);
   };
 
-
-  const handleDelete = (id: string) => {
-    // Implement your delete logic here
-    console.log(`Delete button clicked for item ${id}`);
-  };
-
+ 
 
     return (
       <>
@@ -83,15 +83,10 @@ const TableTasks: FC<TableDataProps> = ({ tasks }) => {
                    </Link>
                 
                 
-                
-                    <button
-                      onClick={() => handleDelete(task.id)}
-                      className="btn btn-circle hover:bg-white bg-indigo-950"
-                    >
-                     <svg xmlns="http://www.w3.org/2000/svg"  className="h-6 w-6" fill="none" viewBox="0 0 48 48">
-  <path fill="#b39ddb" d="M30.6,44H17.4c-2,0-3.7-1.4-4-3.4L9,11h30l-4.5,29.6C34.2,42.6,32.5,44,30.6,44z"></path><path fill="#9575cd" d="M28 6L20 6 14 12 34 12z"></path><path fill="#7e57c2" d="M10,8h28c1.1,0,2,0.9,2,2v2H8v-2C8,8.9,8.9,8,10,8z"></path>
-  </svg>
-                    </button>
+                <QueryClientProvider client={queryClient}>
+                <DeleteButton id={task.id}/>
+            </QueryClientProvider>
+                   
                   </td>
                 </tr>
               )

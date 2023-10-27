@@ -13,7 +13,8 @@ const Create = () => {
   const handleCreateTask: SubmitHandler<FormInputTask> =(data)=>{
     createTask(data)
   }
-  const {mutate: createTask ,status} = useMutation({
+  const { mutate:createTask } = useMutation({
+
     mutationFn:(newTask: FormInputTask)=>{
       return axios.post('/api/tasks', newTask)
     },

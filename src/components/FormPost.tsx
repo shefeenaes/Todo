@@ -9,9 +9,12 @@ interface FormInput
 {
   submit:SubmitHandler<FormInputTask>;
   isEditing: boolean;
+  initialValue?:FormInputTask;
 }
-const FormPost: FC<FormInput> = ({submit, isEditing}) => {
-    const {register,handleSubmit} = useForm<FormInputTask>();
+const FormPost: FC<FormInput> = ({submit, isEditing, initialValue}) => {
+    const {register,handleSubmit} = useForm<FormInputTask>({
+      defaultValues:initialValue
+    });
 
     //fetch list of tasks
     const {data: dataTasks, isLoading: isLoadingTasks}= useQuery({

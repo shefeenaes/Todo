@@ -12,6 +12,7 @@ export async function DELETE(req: Request,context:contextProps)
 {
     try
     {
+
         const {params}=context
         await db.task.delete({
             where:
@@ -47,5 +48,27 @@ export async function PATCH(req: Request,context:contextProps)
     catch(error)
     {
         return NextResponse.json({message:'server failed to delete task' },{status:500})
+    }
+}
+export async function GET(req: Request,context:contextProps)
+{
+    try
+    {
+        const {params}=context
+        const task = await db.task.findFirst(
+            {
+                where:
+            {
+                id:params.taskId
+            } ,
+            
+            }
+        )
+        return NextResponse.json(task,{status:200})
+
+    }
+    catch(error)
+    {
+        return NextResponse.json({message:'server failed to fetch task' },{status:500})
     }
 }

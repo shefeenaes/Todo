@@ -11,7 +11,7 @@ const Navbar = () => {
         Todo App
       </div>
       <div className="flex-none">
-        <Link className='btn btn-ghost text-violet-300' href='/create'>Add New Task</Link>
+      <Link className='btn btn-primary' href='/create'>Add New Task</Link>
       </div>
     </div>
   </div>
