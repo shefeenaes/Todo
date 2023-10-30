@@ -14,6 +14,12 @@ const config: Config = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+      fontFamily: {
+        "Gilroy-Regular": ["GilroyRegular", "sans-serif"],
+        "Gilroy-Bold": ["GilroyBold", "sans-serif"],
+        "Gilroy-Semi-Bold": ["GilroySemiBold", "sans-serif"],
+        "Gilroy-Medium": ["GilroyMedium", "sans-serif"],
+      },
     }, 
     container:{
       center:true,
