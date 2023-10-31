@@ -3,7 +3,7 @@ import { db } from "@/lib/db";
 
 // Define an interface for the task
 interface Task {
-  id: number;
+  id: string;
   task: string;
   status: string;
 }
@@ -21,8 +21,8 @@ async function getTasks() {
   });
 
   // Map the response to the expected structure and convert id to a string
-  const tasks = response.map((task) => ({
-    id: task.id.toString(), // Convert id to a string
+  const tasks = response.map((task: Task) => ({
+    id: task.id.toString(),
     task: task.task,
     status: task.status
   }));
