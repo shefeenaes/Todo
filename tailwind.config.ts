@@ -9,6 +9,12 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      textColor: {
+        'custom-color': '#53BBC2', // Define a custom text color class
+      },
+      colors: {
+        "brunswick-green": "#1A4742",
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
@@ -21,6 +27,7 @@ const config: Config = {
         "Gilroy-Medium": ["GilroyMedium", "sans-serif"],
       },
     }, 
+   
     container:{
       center:true,
       padding:'5rem',

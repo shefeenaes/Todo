@@ -47,9 +47,10 @@ export const WarningButton: FC<ButtonProps> = ({
       size={size}
 
       sx={{
+        backgroundColor: "#F4CA40",
         width: 200,
         border: 2,
-        backgroundColor: "#F4CA40",
+        
         "&:hover": {
           border: 2,
           transform: "scale(1.1)",

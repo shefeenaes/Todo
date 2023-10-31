@@ -5,8 +5,14 @@ import { Stack, Grid } from "@mui/material";
 import Typography from '@/components/typography';
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import { WarningButton } from '@/components/button';
-
+import {Card, CardBody, CardFooter, Image} from "@nextui-org/react";
+import MainSection from '@/components/main-section';
 interface SubscriptionPlan {
+  name: string;
+  price: string;
+  range: string;
+}
+interface TaxPlanType {
   name: string;
   price: string;
   range: string;
@@ -24,12 +30,11 @@ const Page: React.FC = () => {
     { name: 'Custom', price: '~', range: '175000+ AED' },
   ];
 
-  const sampleData = [
-    { text: "All limited links" },
-    { text: "Own analytics platform" },
-    { text: "Chat support" },
-    { text: "Optimize hashtags" },
-    { text: "Unlimited users" },
+  const TaxData:TaxPlanType[] = [
+    { name: "VAT registration" ,price: '600 AED', range: 'One time'},
+    { name: "Vat review & filing",price: '1250 AED', range: 'Quarterly' },
+    { name: "CT registeration" ,price: '500 AED', range: 'One time'},
+    
   ];
 
   // Function to select the appropriate subscription plan based on the slider value
@@ -57,6 +62,8 @@ const renderCard = (title: string, description: string, price: string, priceLabe
     <Box
       sx={{
         border: 1,
+        width: title === 'Tax' ? '400px' : '400px', // Set the desired width
+        minHeight: title === 'Tax' ? '600px' : '400px', // Set the desired height
         borderRadius: "10px",
         borderColor: "#E9EEBD",
         boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
@@ -68,10 +75,10 @@ const renderCard = (title: string, description: string, price: string, priceLabe
     >
       <Box sx={{ backgroundColor: alpha("#f5f5f5", 0.5),p:3, height: '100%' }}>
         <Stack spacing={1}>
-          <Typography variant="h4" sx={{ fontWeight: 900 }} align="center" color="#034A75">
+          <Typography variant="h4"  sx={{ fontWeight: 900 }} align="center" color="#034A75">
             {title}
           </Typography>
-          <Typography type="description" align="center" color="#034A75">
+          <Typography variant="h5" sx={{ fontWeight: 500 }} align="center" color="#034A75">
             {description}
           </Typography>
           <Stack direction={`row`} justifyContent={`center`} alignItems={`center`} sx={{ color: "#034A75" }}>
@@ -86,13 +93,26 @@ const renderCard = (title: string, description: string, price: string, priceLabe
         p: 2,
         height: '300px', // Set your desired height here
       }}>
-        <Stack direction="column" spacing={2}>
-          {title === 'Tax' && sampleData.map((item, index) => (
-            <Stack direction="row" spacing={1} key={index}>
-              <CheckCircleOutlineIcon sx={{ color: 'grey' }} />
-              <Typography type="list-item">{item.text}</Typography>
-            </Stack>
-          ))}
+        <Stack direction="column" >
+        {title === 'Tax' && TaxData.map((item, index) => (
+          <div key={index} className="mb-4 overflow-hidden">
+            <div className="w-full max-w-lg p-1 stats bg-gray-200 text-gray-content overflow-hidden">
+              <div className="stat overflow-hidden">
+                <div className="stat-value text-base text-gray-600">{item.name}</div>
+                <div className="stat-actions">
+                <button className="btn btn-sm btn-success ">{item.price}</button>
+
+                </div>
+              </div>
+              <div className="stat overflow-hidden">
+                <div className="stat-actions">
+                  <button className="btn btn-sm">{item.range}</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}   
+    
           {title === 'Accounting' && (
             <div>
               <div className="w-full max-w-lg mx-auto p-4">
@@ -188,15 +208,10 @@ const renderCard = (title: string, description: string, price: string, priceLabe
         <Grid container >
   {activeTab === 'Tax' && (
     <>
-    <Grid item xs={12} sm={18} md={4}>
-      {renderCard('Tax', 'Ideal for growing business that need more support', '$899', '/mobiled annually')}
+    <Grid item xs={12} sm={6} md={12}>
+      {renderCard('Tax', '', '', '')}
     </Grid>
-    <Grid item xs={12}  sm={18} md={4}>
-      {renderCard('Tax', 'Ideal for growing business that need more support', '$899', '/mobiled annually')}
-    </Grid>
-    <Grid item xs={12} sm={18} md={4}>
-      {renderCard('Tax', 'Ideal for growing business that need more support', '$899', '/mobiled annually')}
-    </Grid>
+    
     </>
   )}
   {activeTab === 'Accounting' && (
