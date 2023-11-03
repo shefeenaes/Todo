@@ -10,6 +10,7 @@ const Navbar = () => {
           <Link className='btn btn-ghost text-violet-300' href='/'>Home</Link>
           <Link className='btn btn-ghost text-violet-300' href='/animated-typing'>Animated Typing</Link>
           <Link className='btn btn-ghost text-violet-300' href='/price-slider-modified'>Price Slide</Link>
+          <Link className='btn btn-ghost text-violet-300' href='/pricing'>Price</Link>
         </div>
 
         <div className="flex-1 text-white text-4xl text-center">

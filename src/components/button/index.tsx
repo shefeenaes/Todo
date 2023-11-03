@@ -43,7 +43,7 @@ export const WarningButton: FC<ButtonProps> = ({
   return (
     <Button
       variant={variant}
-      color="warning"
+
       size={size}
 
       sx={{

@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply tw-font-Gilroy-Regular;
+  }
+}
+
+@layer utilities {
+  .tw-smooth-transit {
+    @apply tw-transform tw-will-change-transform tw-transition-all tw-duration-300;
+  }
+
+  .tw-rich-text {
+    @apply tw-prose tw-max-w-none
+    /* Link */
+    hover:prose-a:tw-text-blue-500 prose-a:tw-text-teal-600 hover:prose-a:tw-scale-105 
+    prose-a:tw-inline-block prose-a:tw-transform prose-a:tw-transition-all prose-a:tw-duration-300
+    /* Link styles end */
+
+    /* Headings margin top set to 0 */
+    prose-h1:tw-mt-0 prose-h2:tw-mt-0 prose-h3:tw-mt-0 prose-h4:tw-mt-0 prose-h5:tw-mt-0 prose-h6:tw-mt-0
+    /* Headings set margin botton to 2 */
+     prose-h1:tw-mb-2 prose-h2:tw-mb-2 prose-h3:tw-mb-2 prose-h4:tw-mb-2 prose-h5:tw-mb-2 prose-h6:tw-mb-2
+     
+     /*IMG margins remove*/
+     prose-img:tw-mt-0;
+  }
+
+  .tw-view-container {
+    @apply xl:tw-container tw-mx-auto xl:tw-px-10 lg:tw-px-8 md:tw-px-6 sm:tw-px-4 tw-px-3;
+  }
+}
+
+/* Overrides */

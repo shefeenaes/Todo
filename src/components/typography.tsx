@@ -47,12 +47,12 @@ const Typography: FC<TypographyProps> = ({
   type,
   ...other
 }) => {
-  const mobileScreen = useMediaQuery(theme.breakpoints.down("sm"));
+ 
 
   if (type === "heading") {
     return (
       <MuiTypography
-        variant={mobileScreen ? "h3" : "h2"}
+      
         sx={{ fontWeight: 700, color: color }}
         color={color}
         align={align}
@@ -80,7 +80,7 @@ const Typography: FC<TypographyProps> = ({
   if (type === "subtitle") {
     return (
       <MuiTypography
-        variant={mobileScreen ? "subtitle2" : "subtitle1"}
+       
         color={color}
         align={align}
         gutterBottom={gutterBottom}

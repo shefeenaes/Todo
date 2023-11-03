@@ -1,7 +1,7 @@
 import type { Config } from 'tailwindcss'
 
 const config: Config = {
-  mode:'jit',
+ 
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -9,12 +9,7 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      textColor: {
-        'custom-color': '#53BBC2', // Define a custom text color class
-      },
-      colors: {
-        "brunswick-green": "#1A4742",
-      },
+     
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
@@ -26,6 +21,10 @@ const config: Config = {
         "Gilroy-Semi-Bold": ["GilroySemiBold", "sans-serif"],
         "Gilroy-Medium": ["GilroyMedium", "sans-serif"],
       },
+
+      colors: {
+        "brunswick-green": "#1A4742",
+      },
     }, 
    
     container:{
@@ -34,6 +33,6 @@ const config: Config = {
       screens:{'2xl':'2000px'}
     }
   },
-  plugins: [require("daisyui")],
+  plugins: [require("@tailwindcss/typography"),require("daisyui")]
 }
 export default config

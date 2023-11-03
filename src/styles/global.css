@@ -1,0 +1,26 @@
+@font-face {
+  font-family: GiloryBold;
+  src: url("/fonts/Gilroy-Bold.woff2");
+  format: ("woff2");
+  font-display: block;
+}
+@font-face {
+  font-family: GilorySemiBold;
+  src: url("/fonts/Gilroy-SemiBold.woff2");
+  format: ("woff2");
+  font-display: block;
+}
+
+@font-face {
+  font-family: GiloryMedium;
+  src: url("/fonts/Gilroy-Medium.woff2");
+  format: ("woff2");
+  font-display: block;
+}
+
+@font-face {
+  font-family: GiloryRregular;
+  src: url("/fonts/Gilroy-Regular.woff2");
+  format: ("woff2");
+  font-display: block;
+}

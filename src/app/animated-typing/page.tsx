@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 
 const TypingText: React.FC = () => {
-  const texts = ["Easier","","Simpler","", "Faster","", "Better"];
+  const texts = ["Simpler","","Easier","","Efficient","", "Stress-Free","", "Profitable"];
   const forwardSpeed = 200; // Speed for moving forward (displaying characters)
   const backwardSpeed = 50; // Speed for moving backward (erasing characters)
   const [textIndex, setTextIndex] = useState(0);
@@ -73,6 +73,7 @@ const TypingText: React.FC = () => {
         </p>
         <div className="animate-typing">
         </div>
+       
       </div>
       <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-black via-transparent to-transparent opacity-50"></div>
     </div>
