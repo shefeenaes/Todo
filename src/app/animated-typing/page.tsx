@@ -60,7 +60,7 @@ const TypingText: React.FC = () => {
     return () => {
       clearTimeout(timeoutId);
     };
-  }, []);
+  }, [displayText, forwardSpeed, backwardSpeed, textIndex, texts, showCursor, charIndex, reverse]);
 
   return (
     <div className="relative w-full h-96 overflow-hidden">
